@@ -3,15 +3,15 @@ import NavBar from "../components/NavBar"
 import MovieCard from "../components/MovieCard"
 
 function Home() {
-const [movie, setMovie] = useState([])
+const [movies, setMovies] = useState([])
 
 useEffect(()=> {
   fetch("http://localhost:4000/movies")
   .then(r=> r.json())
-  .then(data => setMovie(data))
+  .then(data => setMovies(data))
 },[])
 
-const titleList= movie.map((m)=> {
+const titleList= movies.map((m)=> {
   return(
     <div> 
       <MovieCard key={m.id} movie={m} />

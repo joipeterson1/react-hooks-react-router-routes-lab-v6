@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom"
 import NavBar from "../components/NavBar";
 
 function Movie() {
-const [movie, setMovie]= useState({})
+const [movieProfile, setMovieProfile]= useState({})
 const params = useParams()
 const movieId = params.id
 
@@ -11,11 +11,11 @@ const movieId = params.id
 useEffect(()=> {
   fetch(`http://localhost:4000/movies/${movieId}`)
   .then (r => r.json())
-  .then(data=> setMovie(data))
+  .then(data=> setMovieProfile(data))
   .catch(error => console.error(error))
 },[movieId])
 
-if(!movie.title){
+if(!movieProfile.title){
   return <h1>Loading...</h1>
 }
 
@@ -27,9 +27,9 @@ if(!movie.title){
       </header>
       <main>
         {/* Movie info here! */}
-        <h1> {movie.title} </h1>
-      <p> {movie.time} minutes</p>
-        {movie.genres.map((genre)=> {
+        <h1> {movieProfile.title} </h1>
+      <p> {movieProfile.time} minutes</p>
+        {movieProfile.genres.map((genre)=> {
           return(
             <span key={genre}> {genre} </span>
           )
